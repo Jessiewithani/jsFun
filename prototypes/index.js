@@ -24,7 +24,7 @@ const kittyPrompts = {
     
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter(kitty => kitty.color === 'orange').map(cat => cat.name);;
     return result;
 
     // Annotation:
@@ -34,7 +34,9 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort(function(a,b) {
+        return b.age - a.age
+    });
     return result;
 
     // Annotation:
@@ -55,7 +57,11 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map(obj => {
+        newAgeObject = obj
+        newAgeObject.age = obj.age += 2;
+        return newAgeObject;
+    });
     return result;
   }
 };
