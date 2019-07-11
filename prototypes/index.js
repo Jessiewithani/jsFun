@@ -138,7 +138,9 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result =  mods.map(mod => {
+  return {mod:mod.mod, studentsPerInstructor: mod.students / mod.instructors}
+});
     return result;
 
     // Annotation:
@@ -173,7 +175,9 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map(cake => {
+  return {'flavor': cake.cakeFlavor, 'inStock': cake.inStock}
+});
     return result;
 
     // Annotation:
@@ -201,7 +205,11 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake => {
+  if(cake.inStock > 0) {
+    return true;
+  }
+});
     return result;
 
     // Annotation:
@@ -212,7 +220,9 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, curr) => {
+  return acc + curr.inStock
+}, 0);
     return result;
 
     // Annotation:
@@ -224,7 +234,23 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc,cake) => {
+  cake.toppings.forEach(topping => {
+    if(!acc.includes(topping)) {
+      acc.push(topping);
+    }
+  })
+  return acc;
+},[])
+
+const listOfToppings = cakes.reduce((acc,cake) => {
+  cake.toppings.forEach(topping => {
+    if(!acc.includes(topping)){
+      acc.push(topping);
+    }
+  })
+  return acc
+},[]);
     return result;
 
     // Annotation:
@@ -242,7 +268,16 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc,topping) => {
+      topping.toppings.forEach(ingredient => {
+       if(!acc[ingredient]){
+         acc[ingredient] = 1
+       } else{
+         acc[ingredient]++
+       }
+      })
+      return acc 
+    },{});
     return result;
 
     // Annotation:
