@@ -312,7 +312,11 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter(program => {
+      if(program.program === 'FE') {
+        return true;
+      }
+    });
     return result;
 
     // Annotation:
@@ -327,7 +331,19 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((acc,curr) => {
+
+  let frontEnd = classrooms.filter(classroom => classroom.program === 'FE').reduce((acc, capacity) => {
+  return acc + capacity.capacity;
+},0)
+
+let backEnd = classrooms.filter(classroom => classroom.program === 'BE').reduce((acc, capacity) => {
+  return acc + capacity.capacity;
+},0)
+  acc['feCapacity'] = frontEnd;
+  acc['beCapacity'] = backEnd;
+  return acc;
+},{});
     return result;
 
     // Annotation:
@@ -337,7 +353,9 @@ const classPrompts = {
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a,b) => {
+    return a.capacity - b.capacity
+  });
     return result;
 
     // Annotation:
