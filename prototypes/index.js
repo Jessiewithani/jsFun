@@ -93,7 +93,16 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((membersInClubs, club) => {
+  const clubName = club.club;
+  club.members.forEach(member => {
+    if(!membersInClubs[member]) {
+      membersInClubs[member] = [];
+    }
+    membersInClubs[member].push(clubName)
+  }) 
+  return membersInClubs;
+},{});;
     return result;
 
     // Annotation:
